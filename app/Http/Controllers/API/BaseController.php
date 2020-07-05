@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
-    public function senResponse($result, $massage) {
-        
-        $code = 200;
+    public function sendResponse($result, $message, $code = 200) {
 
         $response = [
             'success' => true,
@@ -20,7 +18,7 @@ class BaseController extends Controller
         return response()->json($response, $code);
     }
 
-    public function senError($error, $errorMessages = [], $code = 404) {
+    public function sendError($error, $errorMessages = [], $code = 404) {
 
         $response = [
             'success' => false,
