@@ -35,7 +35,26 @@ class ProductController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'name' => 'required|max:25',
+            'description' => 'required|max:255',
+            'price' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            $message = 'Validation Error.';
+            return $this->sendError($message, $validator->errors());
+        }
+
+        $product = Product::create($data);
+
+        $success['product'] = new ProductResource($product);
+        $message = 'Product Created Successfully';
+        $code = 201;
+
+        return $this->sendResponse($success, $message, $code);
     }
 
     /**
@@ -46,7 +65,11 @@ class ProductController extends BaseController
      */
     public function show(Product $product)
     {
-        //
+        $success['product'] = new ProductResource($product);
+        $message = 'Product Retrevied Successfully';
+        $code = 200;
+
+        return $this->sendResponse($success, $message, $code);
     }
 
     /**
@@ -58,7 +81,25 @@ class ProductController extends BaseController
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'name' => 'required|max:25',
+            'description' => 'required|max:255',
+            'price' => 'required',
+        ]);
+
+        if($validator->fails()) {
+            $message = 'Validation Error.';
+            return $this->sendError($message, $validator->errors());
+        }
+
+        $product->update($data);
+        
+        $success['product'] = new ProductResource($product);
+        $message = 'Product Updated Successfully';
+
+        return $this->sendResponse($success, $message);
     }
 
     /**
@@ -69,6 +110,10 @@ class ProductController extends BaseController
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        $message = 'Product Destroyed Successfully';
+
+        return $this->sendResponse(null, $message);
     }
 }

@@ -21,4 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', 'API\AuthController@register');
 Route::post('login', 'API\AuthController@login');
 
-Route::get('products', 'API\ProductController@index')->middleware('auth:api');
+Route::middleware('auth:api')->group(function() {
+    Route::get('products', 'API\ProductController@index');
+    Route::post('products/store', 'API\ProductController@store');
+    Route::get('products/{product}', 'API\ProductController@show');
+    Route::put('products/{product}', 'API\ProductController@update');
+    Route::delete('products/{product}', 'API\ProductController@destroy');
+});
+
+
