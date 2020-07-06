@@ -32,7 +32,7 @@ Route::middleware('auth:api')->group(function() {
     Route::post('kits/', 'API\KitController@store');
     Route::get('kits/{kit}', 'API\KitController@show');
     Route::put('kits/{kit}', 'API\KitController@update');
-    Route::delete('kits/{kti}', 'API\KitController@destroy');
+    Route::delete('kits/{kit}', 'API\KitController@destroy');
 
 });
 
