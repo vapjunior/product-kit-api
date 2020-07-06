@@ -10,5 +10,6 @@ class Product extends Model
         'name', 
         'description', 
         'price',
+        'ml_categorie_id',
     ];
 }

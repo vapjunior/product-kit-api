@@ -41,6 +41,7 @@ class ProductController extends BaseController
             'name' => 'required|max:25',
             'description' => 'required|max:255',
             'price' => 'required',
+            'ml_categorie_id' => 'required',
         ]);
 
         if($validator->fails()) {
@@ -87,6 +88,7 @@ class ProductController extends BaseController
             'name' => 'required|max:25',
             'description' => 'required|max:255',
             'price' => 'required',
+            'ml_categorie_id' => 'required',
         ]);
 
         if($validator->fails()) {
