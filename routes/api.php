@@ -27,6 +27,13 @@ Route::middleware('auth:api')->group(function() {
     Route::get('products/{product}', 'API\ProductController@show');
     Route::put('products/{product}', 'API\ProductController@update');
     Route::delete('products/{product}', 'API\ProductController@destroy');
+
+    Route::get('kits', 'API\KitController@index');
+    Route::post('kits/', 'API\KitController@store');
+    Route::get('kits/{kit}', 'API\KitController@show');
+    Route::put('kits/{kit}', 'API\KitController@update');
+    Route::delete('kits/{kti}', 'API\KitController@destroy');
+
 });
 
 

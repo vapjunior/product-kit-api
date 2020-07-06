@@ -4,18 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Kit extends Model
 {
     protected $fillable = [
         'id',
         'name', 
         'description', 
-        'price',
         'ml_categorie_id',
     ];
 
-    public function kits()
+    public function products()
     {
-        return $this->belongsToMany('App\Kit');
+        return $this->belongsToMany('App\Product');
     }
 }
